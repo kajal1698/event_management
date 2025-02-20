@@ -1,0 +1,18 @@
+.event-form-card {
+    width: 100%;
+    max-width: 500px; /* Keep width fixed */
+    padding: 20px;
+    margin-left: 0; /* Align to the left */
+  }
+  
+  .full-width {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: flex-start; /* Align buttons to the left */
+    gap: 10px;
+  }
+  

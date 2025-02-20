@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+.success-snackbar {
+    background-color: #4caf50 !important;
+    color: white !important;
+    font-size: 16px;
+    text-align: center;
+    font-weight: bold;
+  }
+  .error-snackbar {
+    background-color: red !important;
+    color: white !important;
+    font-size: 16px;
+    text-align: center;
+    font-weight: bold;
+  }
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  app-root {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }   

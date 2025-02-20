@@ -1,0 +1,58 @@
+<mat-card class="event-form-card">
+    <mat-card-title>{{ isEdit ? 'Edit Event' : 'Add Event' }}</mat-card-title>
+    <mat-card-content>
+  
+      <!-- Event Title -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Event Title</mat-label>
+        <input matInput [(ngModel)]="event.title" required (ngModelChange)="isFormValid()">
+        <mat-error *ngIf="!isEventNameValid()">
+          Event name must be 10-40 characters, cannot start with a number, and must not start with a space.
+        </mat-error>
+      </mat-form-field>
+  
+      <!-- Event Date & Time (With Min Date) -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Event Date & Time</mat-label>
+        <input matInput type="datetime-local" [(ngModel)]="event.date" [min]="minDate" required (ngModelChange)="isFormValid()">
+        <mat-error *ngIf="!isDateValid()"> Please select a valid future date and time. </mat-error>
+      </mat-form-field>
+  
+      <!-- Event Location -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Location</mat-label>
+        <input matInput [(ngModel)]="event.location" required (ngModelChange)="isFormValid()">
+        <mat-error *ngIf="!isLocationValid()">
+          Location must be 10-100 characters and cannot start with a space.
+        </mat-error>
+      </mat-form-field>
+  
+      <!-- Event Description -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea matInput [(ngModel)]="event.description" mat-autosize required (ngModelChange)="isFormValid()"></textarea>
+        <mat-error *ngIf="!isDescriptionValid()">
+          Description must be 20-500 characters and cannot start with a space.
+        </mat-error>
+      </mat-form-field>
+  
+    </mat-card-content>
+  
+    <mat-card-actions class="form-actions">
+      <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!isFormValid()"> 
+        {{ isEdit ? 'Update' : 'Add' }}
+      </button>
+      <button mat-button color="warn" routerLink="/events">Cancel</button>
+    </mat-card-actions>
+  </mat-card>
+  
+  <!-- Update Confirmation Dialog -->
+  <ng-template #updateDialog>
+    <h2 mat-dialog-title>Confirm Update</h2>
+    <mat-dialog-content>Are you sure you want to update this event?</mat-dialog-content>
+    <mat-dialog-actions align="end">
+      <button mat-button (click)="dialogRef.close()">No</button>
+      <button mat-button color="primary" (click)="confirmUpdate()">Yes</button>
+    </mat-dialog-actions>
+  </ng-template>
+  
